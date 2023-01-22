@@ -38,7 +38,7 @@
       <td><%= task.project %></td>
       <td><%= link_to 'Show', [task.project, task] %></td>
       <td><%= link_to 'Edit', edit_project_task_path(task.project, task) %></td>
-      <td><%= link_to 'Destroy', [task.project, task], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= button_to 'Destroy', [task.project, task], method: :delete, onClick: "return confirm('Are you sure?')" %></td>
     </tr>
   <% end %>
 <% end %>

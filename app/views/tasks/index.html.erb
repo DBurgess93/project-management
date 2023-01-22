@@ -11,7 +11,7 @@
     <th></th>
   </tr>
 
-<% @tasks.each do |task| %>
+<% @project.tasks.each do |task| %>
   <tr>
     <td><%= task.name %></td>
     <td><%= task.description %></td>
@@ -26,4 +26,4 @@
 
 <br />
 
-<%= link_to 'New Task', new_project_task_path(params[:project_id]) %>
+<%= link_to 'New Task', new_project_task_path(@project.id) %>
