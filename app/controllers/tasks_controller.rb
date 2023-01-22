@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_project
+  before_action :get_project
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   # GET projects/1/tasks
@@ -50,6 +51,10 @@ class TasksController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def get_project
+      @project = Project.find(params[:project_id])
+    end
+
     def set_project
       @project = Project.find(params[:project_id])
     end
