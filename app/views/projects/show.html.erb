@@ -8,64 +8,49 @@
         <%= button_to "Destroy", @project, method: :delete, class: "btn btn-danger", onClick: "return confirm('Are you sure?')" %>
       </div>
     </h2>
-    <h6>Add Task</h6>
 
+    <div class="mb-4">
+      <h6>Add Task</h6>
       <%= form_for([@task.project, @task]) do |f| %>
-  <% if @task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+          <% if @task.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
-      <ul>
-      <% @task.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+              <ul>
+              <% @task.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <%= f.hidden_field :status, value: 'not-started' %>
+          <div class="input-group">
+            <%= f.text_field :name, class: "form-control", placeholder: "Enter task name.." %>
+            <div class="input-group-append">
+              <%= f.submit class: "btn btn-primary"%>
+            </div>
+          </div>
+        <% end %>
     </div>
-  <% end %>
-  <div class="input-group">
-    <%= f.text_field :name, class: "form-control", placeholder: "Enter task name.." %>
-    <div class="input-group-append">
-      <%= f.submit class: "btn btn-primary"%>
-    </div>
-  </div>
-<% end %>
 
+      <h4>Tasks</h4>
+        <% @project.tasks.each do |task| %>
+          <% if task.persisted? %>
+            <div class="card">
+              <div class="card-body">
+                <span class="badge bg-primary"><%= task.status %></span>
+                <h5 class="card-title d-flex justify-content-between mb-4">
+                <span><%= task.name %></span>
+                <div>
+                  <%= link_to 'Edit', edit_project_task_path(task.project, task), class: "btn btn-warning btn-sm" %>
+                  <%= button_to 'Destroy', [task.project, task], class: "btn btn-danger btn-am", method: :delete, onClick: "return confirm('Are you sure?')" %>
+                </div>
+                </h5>
+                <p><%= task.description %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
 
   </div>
 </div>
-
-<hr>
-
-  <h1>New task</h1>
-
-<hr>
-
-<h1>Listing tasks</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Status</th>
-    <th>Project</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @project.tasks.each do |task| %>
-  <% if task.persisted? %>
-    <tr>
-      <td><%= task.name %></td>
-      <td><%= task.description %></td>
-      <td><%= task.status %></td>
-      <td><%= task.project %></td>
-      <td><%= link_to 'Show', [task.project, task] %></td>
-      <td><%= link_to 'Edit', edit_project_task_path(task.project, task) %></td>
-      <td><%= button_to 'Destroy', [task.project, task], method: :delete, onClick: "return confirm('Are you sure?')" %></td>
-    </tr>
-  <% end %>
-<% end %>
-</table>
-
-<br />
