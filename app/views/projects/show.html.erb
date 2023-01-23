@@ -1,11 +1,11 @@
-<%= link_to "Back", projects_path, class: "btn btn-light mb-3" %>
+<%= link_to "Back", projects_path, class: "btn btn-secondary mb-3" %>
 <div class="card">
   <div class="card-body">
     <h2 class="card-title d-flex justify-content-between mb-4">
       <span><%= @project.name %></span>
       <div class="d-flex">
-        <%= link_to "Edit", edit_project_path(@project), class: "btn btn-warning" %>
-        <%= button_to "Destroy", @project, method: :delete, class: "btn btn-danger", onClick: "return confirm('Are you sure?')" %>
+        <%= link_to "Edit", edit_project_path(@project), class: "btn btn-light" %>
+        <%= button_to "Destroy", @project, method: :delete, class: "btn btn-dark", onClick: "return confirm('Are you sure?')" %>
       </div>
     </h2>
 
@@ -36,15 +36,17 @@
       <h4>Tasks</h4>
         <% @project.tasks.each do |task| %>
           <% if task.persisted? %>
-            <div class="card">
+            <div class="card mb-3">
               <div class="card-body">
-                <span class="badge bg-primary"><%= task.status %></span>
-                <h5 class="card-title d-flex justify-content-between mb-4">
-                <span><%= task.name %></span>
-                <div>
-                  <%= link_to 'Edit', edit_project_task_path(task.project, task), class: "btn btn-warning btn-sm" %>
-                  <%= button_to 'Destroy', [task.project, task], class: "btn btn-danger btn-am", method: :delete, onClick: "return confirm('Are you sure?')" %>
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="badge bg-<%= task.badge_color %> mb-3"><%= task.status %></span>
+                  <div class="d-flex">
+                    <%= link_to 'Edit', edit_project_task_path(task.project, task), class: "btn btn-light btn-sm" %>
+                    <%= button_to 'Destroy', [task.project, task], class: "btn btn-dark btn-am", method: :delete, onClick: "return confirm('Are you sure?')" %>
+                  </div>
                 </div>
+                <h5 class="card-title d-flex justify-content-between mb-2">
+                  <span><%= task.name %></span>
                 </h5>
                 <p><%= task.description %></p>
               </div>
