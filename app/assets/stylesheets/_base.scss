@@ -1,7 +1,17 @@
 
+body {
+  background-color: #FAFFFD;
+
+}
+.card {
+  background-color: #3C91E6;
+  margin-bottom: 30px;
+}
 .project-card {
+  background-color: #F5F4F6;
   transition: background-color 0.3s ease;
+  border-radius: 5px;
   &:hover {
-    background-color: #f7f7f7;
+    background-color: #FCD9C5;
   }
 }

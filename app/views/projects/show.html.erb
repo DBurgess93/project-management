@@ -37,7 +37,7 @@
         <% @project.tasks.each do |task| %>
           <% if task.persisted? %>
             <div class="card mb-3">
-              <div class="card-body">
+              <div class="card-body project-card">
                 <div class="d-flex justify-content-between mb-2">
                   <span class="badge bg-<%= task.badge_color %> mb-3"><%= task.status %></span>
                   <div class="d-flex">
