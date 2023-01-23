@@ -7,8 +7,16 @@
 
     <% @projects.each do |project| %>
       <%= link_to project, class: "text-decoration-none" do %>
-        <div class="card project-card">
+        <div class="card project-card mb-3">
           <div class="card-body">
+          <div class="mb-3">
+            <span class="badge bg-<%= project.badge_color %>">
+              <%= project.status %>
+            </span>
+            <span class="text-secondary">
+              <small>%34 complete</small>
+            </span>
+          </div>
             <h5 class="card-title text-dark"><%= project.name %></h5>
             <p class="text-secondary"><%= project.description %></p>
           </div>

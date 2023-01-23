@@ -10,19 +10,20 @@
       </ul>
     </div>
   <% end %>
-  <div>
+  <div class="form-group mb-3">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
-  <div class="form-group">
+  <div class="form-group mb-3">
     <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.text_area :description, class: "form-control" %>
   </div>
-  <div class="form-group">
+  <div class="form-group mb-3">
     <%= f.label :status %><br />
-    <%= f.select :status, Task::STATUS_OPTIONS %>
+    <%= f.select :status, Task::STATUS_OPTIONS, {}, class: "form-control" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>
+ 
